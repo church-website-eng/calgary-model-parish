@@ -10,7 +10,7 @@ export default function Hero({ churchInfo }: { churchInfo?: ChurchInfo }) {
   return (
     <section className="relative flex min-h-[80vh] items-center justify-center text-white">
       <Image
-        src="/images/church-building.png"
+        src="/images/hero-bg.jpg"
         alt={`${info.cathedralName} — ${info.street}, ${info.city}`}
         fill
         className="object-cover"
