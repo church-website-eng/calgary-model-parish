@@ -45,7 +45,7 @@ const jsonLd = {
     "@type": "PostalAddress",
     streetAddress: "Calgary, AB",
     addressLocality: "Calgary",
-    addressRegion: "ON",
+    addressRegion: "AB",
     addressCountry: "CA",
   },
   openingHoursSpecification: [
