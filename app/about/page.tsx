@@ -36,7 +36,7 @@ export default async function AboutPage() {
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <img
-            src="/images/church-building.png"
+            src={(about as typeof defaultAbout & { pagePhoto?: string }).pagePhoto || "/images/church-building.png"}
             alt="Calgary Model Parish — Calgary, AB"
             className="w-full rounded-xl shadow-lg object-cover max-h-[500px]"
           />

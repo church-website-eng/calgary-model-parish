@@ -177,10 +177,10 @@ export default function PrivacyPolicyPage() {
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:ccccalgarymodelpeterborough@gmail.com"
+                  href="mailto:info@ccccalgarymodel.ca"
                   className="text-accent hover:underline"
                 >
-                  ccccalgarymodelpeterborough@gmail.com
+                  info@ccccalgarymodel.ca
                 </a>
               </p>
             </div>

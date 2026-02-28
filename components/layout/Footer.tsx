@@ -36,10 +36,8 @@ export default async function Footer() {
           </div>
           <p className="text-sm text-white/70 leading-relaxed">
             {churchInfo.cathedralName}<br />
-            Calgary Model Parish<br />
             {churchInfo.street}<br />
-            {churchInfo.city}, {churchInfo.province}<br />
-            Diocese of Canada | National Headquarter
+            {churchInfo.city}, {churchInfo.province}
           </p>
         </div>
 

@@ -40,10 +40,10 @@ const jsonLd = {
   name: "Celestial Church of Christ — Calgary Model Parish",
   alternateName: "CCC Calgary Model Parish, Calgary Model Parish",
   description:
-    "Celestial Church of Christ, Calgary Model Parish. Calgary Model Parish, Diocese of Canada | National Headquarter.",
+    "Celestial Church of Christ, Calgary Model Parish. 440 28 St NE, Calgary, AB T2A 6T3.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Calgary, AB",
+    streetAddress: "440 28 St NE",
     addressLocality: "Calgary",
     addressRegion: "AB",
     addressCountry: "CA",
