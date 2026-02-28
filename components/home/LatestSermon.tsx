@@ -10,7 +10,13 @@ export default function LatestSermon({ sermon }: Props) {
   const title = sermon?.title || "Sermon by the Shepherd";
   const speaker = sermon?.speaker || "Shepherd-in-Charge";
   const date = sermon?.date ? formatDate(sermon.date) : "February 26, 2026";
-  const videoUrl = sermon?.videoUrl || "";
+  let videoUrl = sermon?.videoUrl || "";
+
+  // Convert YouTube watch URLs to embed format
+  const ytMatch = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
+  if (ytMatch) {
+    videoUrl = `https://www.youtube.com/embed/${ytMatch[1]}`;
+  }
 
   return (
     <section className="bg-muted-light py-16">
@@ -32,6 +38,7 @@ export default function LatestSermon({ sermon }: Props) {
               <iframe
                 src={videoUrl}
                 className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={title}
               />
