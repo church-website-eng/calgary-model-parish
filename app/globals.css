@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf8f5;
-  --foreground: #1a1a2e;
-  --primary: #1a237e;
-  --primary-light: #283593;
-  --accent: #c62828;
-  --accent-light: #e53935;
-  --gold: #d4a017;
-  --gold-light: #f0c040;
-  --muted: #6b7280;
-  --muted-light: #f3f0eb;
-  --border: #e5e2dc;
+  --background: #f8faf8;
+  --foreground: #1a2e1a;
+  --primary: #0d5c3f;
+  --primary-light: #148c5f;
+  --accent: #b8860b;
+  --accent-light: #d4a017;
+  --gold: #b8860b;
+  --gold-light: #d4a017;
+  --muted: #6b7a6b;
+  --muted-light: #eef3ee;
+  --border: #d4ddd4;
   --card: #ffffff;
   --destructive: #dc2626;
   --success: #16a34a;
 }
 
 .dark {
-  --background: #0f0f1a;
-  --foreground: #e8e8ef;
-  --primary: #8b9cf7;
-  --primary-light: #a5b4fc;
-  --muted: #9ca3af;
-  --muted-light: #1e1e2e;
-  --border: #2e2e3e;
-  --card: #1a1a2a;
+  --background: #0a150f;
+  --foreground: #e0ece4;
+  --primary: #5cc99a;
+  --primary-light: #7ad4ae;
+  --muted: #8fa898;
+  --muted-light: #1a2b20;
+  --border: #2a3d30;
+  --card: #152019;
 }
 
 @theme inline {
@@ -45,7 +45,7 @@
   --color-success: var(--success);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-serif: var(--font-serif, "Georgia", "Times New Roman", serif);
 }
 
 body {
