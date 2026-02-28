@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sermons",
     "/blog",
     "/gallery",
-    "/rentals",
     "/live",
     "/hymnal",
     "/ministries",

@@ -54,10 +54,6 @@ export default function PrivacyPolicyPage() {
                 subscribe to our newsletter.
               </li>
               <li>
-                <strong>Hall Rental Inquiries:</strong> Name, contact details, and
-                event information for rental requests.
-              </li>
-              <li>
                 <strong>Testimonies:</strong> Name and testimony content when
                 voluntarily submitted.
               </li>
@@ -75,7 +71,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <ul className="list-disc space-y-1 pl-6">
               <li>To respond to your inquiries and prayer requests</li>
-              <li>To process sacrament and hall rental requests</li>
+              <li>To process sacrament requests</li>
               <li>To send newsletters and church announcements (with consent)</li>
               <li>To publish testimonies (with your explicit permission)</li>
               <li>To improve our website and services</li>

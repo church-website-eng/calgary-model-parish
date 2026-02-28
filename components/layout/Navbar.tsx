@@ -30,7 +30,6 @@ const mainLinks = [
       { label: "Gallery", href: "/gallery" },
     ],
   },
-  { label: "Hall Rentals", href: "/rentals" },
   { label: "Announcements", href: "/announcements" },
   { label: "Contact", href: "/contact" },
 ];
@@ -48,7 +47,6 @@ const mobileLinks = [
   { label: "Announcements", href: "/announcements" },
   { label: "Blog", href: "/blog" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Hall Rentals", href: "/rentals" },
   { label: "Sacraments", href: "/sacraments" },
   { label: "Plan Your Visit", href: "/visit" },
   { label: "Contact", href: "/contact" },
