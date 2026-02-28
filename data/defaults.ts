@@ -11,6 +11,7 @@ export const defaultChurchInfo = {
   facebookUrl: "https://www.facebook.com/profile.php?id=100081787865942",
   youtubeUrl: "https://www.youtube.com/@calgarymodelparish",
   instagramUrl: "https://www.instagram.com/calgarymodelparish",
+  audiomackUrl: "https://audiomack.com/ccccalgaryparish",
 };
 
 export const defaultServiceTimes = {
@@ -93,6 +94,15 @@ export const defaultAbout = {
     { id: "2", name: "Church Secretary", title: "Church Secretary", bio: "Managing parish administration, communications, and record-keeping to ensure the smooth operation of Calgary Model Parish.", photo: "" },
     { id: "3", name: "Mother-in-Celestial", title: "Mother-in-Celestial", bio: "Guiding the women's fellowship, prayer ministries, and welfare activities with love and spiritual wisdom.", photo: "" },
   ],
+};
+
+export const defaultCharacterOfWeek = {
+  name: "Onesimus",
+  title: "The Faithful Servant",
+  verse: "Philemon 1:10-11",
+  description:
+    "Once a runaway slave, Onesimus became a faithful servant of Christ through Paul's ministry. His transformation shows that no one is beyond God's redemptive power.",
+  imageUrl: "",
 };
 
 export const defaultMinistries = {

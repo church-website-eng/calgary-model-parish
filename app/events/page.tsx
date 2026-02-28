@@ -3,6 +3,7 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { FiCalendar, FiMapPin } from "react-icons/fi";
 import { formatDate } from "@/lib/utils";
+import { getContent } from "@/lib/content";
 import type { ChurchEvent } from "@/types";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -22,8 +23,17 @@ export const metadata: Metadata = {
 };
 
 export default async function EventsPage() {
-  const events = await getEvents(20);
-  const items = events.length > 0 ? events : placeholderEvents;
+  const [contentfulEvents, dbData] = await Promise.all([
+    getEvents(20),
+    getContent("events", { events: [] } as { events: ChurchEvent[] }),
+  ]);
+
+  // DB events first, then Contentful, then placeholder
+  const items = dbData.events.length > 0
+    ? dbData.events
+    : contentfulEvents.length > 0
+      ? contentfulEvents
+      : placeholderEvents;
 
   return (
     <>

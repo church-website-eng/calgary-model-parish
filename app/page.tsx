@@ -1,6 +1,7 @@
 import Hero from "@/components/home/Hero";
 import ServiceCountdown from "@/components/home/ServiceCountdown";
 import Stats from "@/components/home/Stats";
+import CharacterOfWeek from "@/components/home/CharacterOfWeek";
 import ServiceTimes from "@/components/home/ServiceTimes";
 import UpcomingEvents from "@/components/home/UpcomingEvents";
 import LatestSermon from "@/components/home/LatestSermon";
@@ -30,6 +31,8 @@ export default async function Home() {
       <Hero churchInfo={churchInfo} />
       <ServiceCountdown />
       <Stats items={stats.items} />
+      <Divider />
+      <CharacterOfWeek />
       <Divider />
       <ServiceTimes data={serviceTimes} />
       <Divider />

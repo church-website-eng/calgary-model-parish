@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FiFacebook, FiYoutube, FiInstagram, FiMail } from "react-icons/fi";
+import { FiFacebook, FiYoutube, FiInstagram, FiMail, FiMusic } from "react-icons/fi";
 import { getContent } from "@/lib/content";
 import { defaultChurchInfo, defaultServiceTimes } from "@/data/defaults";
 
@@ -14,6 +14,7 @@ export default async function Footer() {
     { href: churchInfo.facebookUrl, icon: <FiFacebook size={20} />, label: "Facebook" },
     { href: churchInfo.youtubeUrl, icon: <FiYoutube size={20} />, label: "YouTube" },
     { href: churchInfo.instagramUrl, icon: <FiInstagram size={20} />, label: "Instagram" },
+    { href: churchInfo.audiomackUrl, icon: <FiMusic size={20} />, label: "Audiomack" },
     { href: churchInfo.email ? `mailto:${churchInfo.email}` : "", icon: <FiMail size={20} />, label: "Email" },
   ];
 

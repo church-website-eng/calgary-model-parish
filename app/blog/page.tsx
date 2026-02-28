@@ -3,6 +3,8 @@ import Card from "@/components/ui/Card";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import { placeholderPosts } from "@/data/blog";
+import { getContent } from "@/lib/content";
+import type { BlogPost } from "@/types";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,8 +13,17 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await getBlogPosts(20);
-  const items = posts.length > 0 ? posts : placeholderPosts;
+  const [contentfulPosts, dbData] = await Promise.all([
+    getBlogPosts(20),
+    getContent("blog", { posts: [] } as { posts: BlogPost[] }),
+  ]);
+
+  // DB posts first, then Contentful, then placeholder
+  const items = dbData.posts.length > 0
+    ? dbData.posts
+    : contentfulPosts.length > 0
+      ? contentfulPosts
+      : placeholderPosts;
 
   return (
     <>

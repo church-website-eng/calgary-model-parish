@@ -31,6 +31,14 @@ export const metadata: Metadata = {
       "Calgary Model Parish, Diocese of Alberta. A community of faith, prayer, and spiritual growth.",
     type: "website",
     siteName: "CCC Calgary Model Parish",
+    images: [
+      {
+        url: "/images/hero-bg.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Celestial Church of Christ — Calgary Model Parish",
+      },
+    ],
   },
 };
 

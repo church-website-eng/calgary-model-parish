@@ -1,9 +1,11 @@
 import { getBlogPostBySlug } from "@/lib/contentful";
 import { placeholderPosts } from "@/data/blog";
+import { getContent } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import ShareButtons from "@/components/ui/ShareButtons";
 import { notFound } from "next/navigation";
+import type { BlogPost } from "@/types";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -11,10 +13,16 @@ interface Props {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
+  const [post, dbData] = await Promise.all([
+    getBlogPostBySlug(slug),
+    getContent("blog", { posts: [] } as { posts: BlogPost[] }),
+  ]);
+
+  // Check DB posts first
+  const dbPost = dbData.posts.find((p) => p.slug === slug);
 
   const placeholder = placeholderPosts.find((p) => p.slug === slug);
-  const data = post || placeholder || {
+  const data = dbPost || post || placeholder || {
     title: slug
       .split("-")
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
