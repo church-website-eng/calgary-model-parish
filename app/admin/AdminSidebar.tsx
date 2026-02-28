@@ -27,6 +27,7 @@ const contentLinks = [
   { href: "/admin/content/events", label: "Events" },
   { href: "/admin/content/hymnal", label: "Hymnal" },
   { href: "/admin/content/live", label: "Live Stream" },
+  { href: "/admin/content/gallery", label: "Gallery" },
 ];
 
 export default function AdminSidebar() {

@@ -13,6 +13,7 @@ interface Event {
   location: string;
   description: string;
   slug: string;
+  imageUrl?: string;
 }
 
 export default function EditEvents() {
@@ -133,6 +134,16 @@ export default function EditEvents() {
               <input
                 value={event.location}
                 onChange={(e) => updateEvent(i, "location", e.target.value)}
+                className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Image URL (paste from Media Library)</label>
+              <input
+                value={event.imageUrl || ""}
+                onChange={(e) => updateEvent(i, "imageUrl", e.target.value)}
+                placeholder="https://... (copy URL from Media Library)"
                 className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
               />
             </div>

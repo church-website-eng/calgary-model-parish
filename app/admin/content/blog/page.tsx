@@ -14,6 +14,7 @@ interface BlogPost {
   category: string;
   excerpt: string;
   body: string;
+  imageUrl?: string;
 }
 
 export default function EditBlog() {
@@ -135,6 +136,16 @@ export default function EditBlog() {
                   className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 />
               </div>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Image URL (paste from Media Library)</label>
+              <input
+                value={post.imageUrl || ""}
+                onChange={(e) => updatePost(i, "imageUrl", e.target.value)}
+                placeholder="https://... (copy URL from Media Library)"
+                className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+              />
             </div>
 
             <div>

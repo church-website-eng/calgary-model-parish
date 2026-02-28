@@ -15,6 +15,7 @@ const editors = [
   { href: "/admin/content/events", label: "Events", description: "Upcoming events, dates, times, and locations" },
   { href: "/admin/content/hymnal", label: "Hymnal", description: "CCC hymns — English, Yoruba, and tonic solfa" },
   { href: "/admin/content/live", label: "Live Stream", description: "YouTube & Facebook live stream settings" },
+  { href: "/admin/content/gallery", label: "Gallery", description: "Photo albums and gallery images" },
 ];
 
 export default function ContentOverview() {

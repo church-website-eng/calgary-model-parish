@@ -18,7 +18,7 @@ interface LiveSettings {
 
 const defaultLive: LiveSettings = {
   youtubeChannelUrl: "https://www.youtube.com/@calgarymodelparish",
-  facebookPageUrl: "https://www.facebook.com/celestialchurchofchristayomotherparish",
+  facebookPageUrl: "https://www.facebook.com/profile.php?id=100081787865942",
   currentStreamUrl: "",
   isLive: false,
 };
