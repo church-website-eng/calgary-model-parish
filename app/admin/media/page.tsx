@@ -43,13 +43,10 @@ export default function MediaPage() {
     setError("");
     setUploading(true);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const res = await fetch("/api/admin/upload", {
+      const res = await fetch(`/api/admin/upload?filename=${encodeURIComponent(file.name)}`, {
         method: "POST",
-        body: formData,
+        body: file,
       });
       const data = await res.json();
       if (!res.ok) {

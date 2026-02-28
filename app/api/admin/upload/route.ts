@@ -4,9 +4,6 @@ import { authOptions } from "@/lib/auth";
 import { put, list, del } from "@vercel/blob";
 
 const MAX_SIZE = 50 * 1024 * 1024; // 50 MB
-const ALLOWED_IMAGE = ["image/jpeg", "image/png", "image/webp", "image/gif"];
-const ALLOWED_VIDEO = ["video/mp4", "video/webm", "video/quicktime"];
-const ALLOWED_TYPES = [...ALLOWED_IMAGE, ...ALLOWED_VIDEO];
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
@@ -15,39 +12,29 @@ export async function POST(req: Request) {
   }
 
   try {
-    const formData = await req.formData();
-    const file = formData.get("file") as File | null;
+    const { searchParams } = new URL(req.url);
+    const filename = searchParams.get("filename");
 
-    if (!file) {
+    if (!filename) {
+      return NextResponse.json({ error: "No filename provided" }, { status: 400 });
+    }
+
+    if (!req.body) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      return NextResponse.json(
-        { error: "File type not allowed. Accepted: JPG, PNG, WebP, GIF, MP4, WebM" },
-        { status: 400 },
-      );
-    }
-
-    if (file.size > MAX_SIZE) {
-      return NextResponse.json(
-        { error: "File too large. Maximum size is 50 MB." },
-        { status: 400 },
-      );
-    }
-
-    // Generate unique filename
-    const ext = file.name.split(".").pop() || "bin";
+    const ext = filename.split(".").pop()?.toLowerCase() || "";
     const timestamp = Date.now();
-    const safeName = file.name
+    const safeName = filename
       .replace(/\.[^.]+$/, "")
       .replace(/[^a-zA-Z0-9_-]/g, "_")
       .substring(0, 50);
-    const filename = `uploads/${timestamp}-${safeName}.${ext}`;
+    const path = `uploads/${timestamp}-${safeName}.${ext}`;
 
-    const blob = await put(filename, file, { access: "public" });
+    const blob = await put(path, req.body, { access: "public" });
 
-    const isVideo = ALLOWED_VIDEO.includes(file.type);
+    const videoExts = ["mp4", "webm", "mov"];
+    const isVideo = videoExts.includes(ext);
 
     return NextResponse.json({
       url: blob.url,
@@ -80,7 +67,6 @@ export async function GET() {
       };
     });
 
-    // Sort newest first
     media.sort((a, b) => b.uploadedAt.localeCompare(a.uploadedAt));
 
     return NextResponse.json({ files: media });
