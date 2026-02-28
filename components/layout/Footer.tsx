@@ -24,8 +24,8 @@ export default async function Footer() {
         {/* Church info */}
         <div>
           <div className="mb-3 flex items-center gap-3">
-            <Image
-              src="/images/logo.jpeg"
+            <img
+              src={churchInfo.logoUrl || "/images/logo.jpeg"}
               alt="CCC Logo"
               width={40}
               height={40}

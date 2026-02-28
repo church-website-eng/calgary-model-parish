@@ -15,6 +15,7 @@ interface BlogPost {
   excerpt: string;
   body: string;
   imageUrl?: string;
+  videoUrl?: string;
 }
 
 export default function EditBlog() {
@@ -144,6 +145,16 @@ export default function EditBlog() {
                 value={post.imageUrl || ""}
                 onChange={(e) => updatePost(i, "imageUrl", e.target.value)}
                 placeholder="https://... (copy URL from Media Library)"
+                className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Video URL (YouTube link or paste from Media Library)</label>
+              <input
+                value={post.videoUrl || ""}
+                onChange={(e) => updatePost(i, "videoUrl", e.target.value)}
+                placeholder="https://www.youtube.com/watch?v=... or paste video URL"
                 className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
               />
             </div>

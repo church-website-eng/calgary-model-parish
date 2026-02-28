@@ -35,6 +35,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!data) notFound();
 
+  const imageUrl = (data as { imageUrl?: string }).imageUrl;
+  const videoUrl = (data as { videoUrl?: string }).videoUrl;
+
   return (
     <>
       <section className="bg-primary py-16 text-white">
@@ -53,8 +56,30 @@ export default async function BlogPostPage({ params }: Props) {
 
       <section className="py-12">
         <div className="mx-auto max-w-3xl px-4">
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt={data.title}
+              className="mb-8 w-full rounded-2xl object-cover shadow-lg"
+            />
+          )}
+
+          {videoUrl && (
+            <div className="mb-8 overflow-hidden rounded-2xl shadow-lg">
+              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  src={(() => { const m = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/); return m ? `https://www.youtube.com/embed/${m[1]}` : videoUrl; })()}
+                  className="absolute inset-0 h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={data.title}
+                />
+              </div>
+            </div>
+          )}
+
           <article className="max-w-none space-y-4 text-foreground/80 leading-relaxed">
-            {data.body.split("\n\n").map((paragraph, i) => (
+            {data.body.split("\n\n").map((paragraph: string, i: number) => (
               <p key={i}>{paragraph}</p>
             ))}
           </article>

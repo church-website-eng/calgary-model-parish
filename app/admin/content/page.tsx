@@ -17,6 +17,8 @@ const editors = [
   { href: "/admin/content/hymnal", label: "Hymnal", description: "CCC hymns — English, Yoruba, and tonic solfa" },
   { href: "/admin/content/live", label: "Live Stream", description: "YouTube & Facebook live stream settings" },
   { href: "/admin/content/gallery", label: "Gallery", description: "Photo albums and gallery images" },
+  { href: "/admin/content/give", label: "Give / Donate", description: "Donation funds, per-fund e-Transfer emails, and preset amounts" },
+  { href: "/admin/content/theme", label: "Theme & Appearance", description: "Customize fonts, font size, and website colors" },
 ];
 
 export default function ContentOverview() {

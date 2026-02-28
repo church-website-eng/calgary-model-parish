@@ -49,13 +49,13 @@ export default async function EventsPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {items.map((event) => (
               <Card key={event.id} className="flex flex-col">
-                {event.image && (
+                {(event.image || event.imageUrl) ? (
                   <img
-                    src={event.image}
+                    src={event.image || event.imageUrl}
                     alt={event.title}
                     className="mb-4 h-40 w-full rounded-lg object-cover"
                   />
-                )}
+                ) : null}
                 <h3 className="mb-2 font-serif text-lg font-bold text-primary">
                   <Link href={`/events/${event.slug}`} className="hover:underline">
                     {event.title}
@@ -72,15 +72,16 @@ export default async function EventsPage() {
                 <p className="mb-4 flex-1 text-sm text-foreground/70">
                   {event.description}
                 </p>
-                {event.registrationEnabled && (
+                {(event.registrationUrl || event.registrationEnabled) ? (
                   <Button
-                    href={`/events/${event.slug}`}
+                    href={event.registrationUrl || `/events/${event.slug}`}
                     variant="accent"
                     size="sm"
+                    target={event.registrationUrl ? "_blank" : undefined}
                   >
                     Register
                   </Button>
-                )}
+                ) : null}
               </Card>
             ))}
           </div>

@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/ui/FloatingButtons";
+import ThemeInjector from "@/components/layout/ThemeInjector";
 import "./globals.css";
 
 const inter = Inter({
@@ -107,6 +108,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
+        <ThemeInjector />
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

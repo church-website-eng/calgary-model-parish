@@ -12,6 +12,7 @@ export const defaultChurchInfo = {
   youtubeUrl: "https://www.youtube.com/@calgarymodelparish",
   instagramUrl: "https://www.instagram.com/calgarymodelparish",
   audiomackUrl: "https://audiomack.com/ccccalgaryparish",
+  logoUrl: "/images/logo.jpeg",
 };
 
 export const defaultServiceTimes = {
@@ -103,6 +104,33 @@ export const defaultCharacterOfWeek = {
   description:
     "Once a runaway slave, Onesimus became a faithful servant of Christ through Paul's ministry. His transformation shows that no one is beyond God's redemptive power.",
   imageUrl: "",
+};
+
+export const defaultThemeSettings = {
+  fontSerif: "Playfair Display",
+  fontSans: "Inter",
+  fontSize: "default",
+  primaryColor: "#0d5c3f",
+  accentColor: "#d4a017",
+  goldColor: "#d4a017",
+};
+
+export const defaultGiveSettings = {
+  funds: [
+    { name: "General Tithe", email: "tithe@ccccalgarymodel.ca" },
+    { name: "Building Fund", email: "building@ccccalgarymodel.ca" },
+    { name: "Missions & Evangelism", email: "missions@ccccalgarymodel.ca" },
+    { name: "Youth Ministry", email: "youth@ccccalgarymodel.ca" },
+    { name: "Welfare & Outreach", email: "welfare@ccccalgarymodel.ca" },
+    { name: "Thanksgiving Offering", email: "info@ccccalgarymodel.ca" },
+    { name: "Special Seed / Harvest", email: "info@ccccalgarymodel.ca" },
+    { name: "Other Donations", email: "info@ccccalgarymodel.ca" },
+  ],
+  presetAmounts: [25, 50, 100, 250],
+  headerQuote:
+    "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
+  autoDepositEnabled: true,
+  taxDeductible: true,
 };
 
 export const defaultMinistries = {
