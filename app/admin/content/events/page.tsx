@@ -55,7 +55,7 @@ export default function EditEvents() {
         title: "",
         date: new Date().toISOString().split("T")[0],
         time: "",
-        location: "Calgary Model Parish, Calgary, AB, Calgary",
+        location: "Calgary Model Parish, 440 28 St NE, Calgary, AB",
         description: "",
         slug: "",
       },

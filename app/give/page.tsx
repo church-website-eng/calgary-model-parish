@@ -12,7 +12,7 @@ export default function GivePage() {
   const [customAmount, setCustomAmount] = useState("");
   const [fund, setFund] = useState(funds[0]);
   const [copied, setCopied] = useState(false);
-  const [email, setEmail] = useState("info@cccccccalgarymodel.ca");
+  const [email, setEmail] = useState("info@ccccalgarymodel.ca");
 
   useEffect(() => {
     fetch("/api/content/church_info")
