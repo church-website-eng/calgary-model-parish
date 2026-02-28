@@ -1,0 +1,115 @@
+import { getStaff } from "@/lib/contentful";
+import Card from "@/components/ui/Card";
+import type { Metadata } from "next";
+import { getContent } from "@/lib/content";
+import { defaultAbout } from "@/data/defaults";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Learn about the history, beliefs, and leadership of Celestial Church of Christ, Calgary Model Parish, Calgary.",
+};
+
+export default async function AboutPage() {
+  const [staff, about] = await Promise.all([
+    getStaff(),
+    getContent("about", defaultAbout),
+  ]);
+
+  // Use leadership from DB content first, then Contentful staff, then defaults
+  const clergy = about.leadership && about.leadership.length > 0
+    ? about.leadership
+    : staff.length > 0
+      ? staff.map((s) => ({ id: s.id, name: s.name, title: s.title, bio: s.bio, photo: s.photo || "" }))
+      : defaultAbout.leadership;
+
+  return (
+    <>
+      <section className="bg-primary py-20 text-center text-white">
+        <h1 className="font-serif text-4xl font-bold md:text-5xl">
+          About Us
+        </h1>
+        <p className="mx-auto mt-4 max-w-2xl text-white/70">
+          Ijo Mimo ti Kristi lati Orun wa &mdash; The Holy Church of Christ from Heaven
+        </p>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <img
+            src="/images/church-building.png"
+            alt="Calgary Model Parish — Calgary, AB"
+            className="w-full rounded-xl shadow-lg object-cover max-h-[500px]"
+          />
+          <p className="mt-3 text-center text-sm text-muted">
+            Calgary Model Parish — Calgary, AB
+          </p>
+        </div>
+      </section>
+
+      <section className="pb-16">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-6 font-serif text-3xl font-bold text-primary">
+            Our History
+          </h2>
+          <div className="space-y-4 text-foreground/70 leading-relaxed">
+            {about.historyParagraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-muted-light py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-10 text-center font-serif text-3xl font-bold text-primary">
+            What We Believe
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {about.beliefs.map((belief) => (
+              <Card key={belief.title}>
+                <h3 className="mb-2 font-serif text-lg font-bold text-primary">
+                  {belief.title}
+                </h3>
+                <p className="text-sm text-foreground/70">
+                  {belief.description}
+                </p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-10 text-center font-serif text-3xl font-bold text-primary">
+            Our Leadership
+          </h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            {clergy.map((person) => (
+              <Card key={person.id} className="text-center">
+                {person.photo ? (
+                  <img
+                    src={person.photo}
+                    alt={person.name}
+                    className="mx-auto mb-4 h-28 w-28 rounded-full object-cover object-top shadow-md"
+                  />
+                ) : (
+                  <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-primary/10 text-3xl text-primary">
+                    {person.name.charAt(0)}
+                  </div>
+                )}
+                <h3 className="font-serif text-lg font-bold text-primary">
+                  {person.name}
+                </h3>
+                <p className="mb-2 text-sm font-medium text-accent">
+                  {person.title}
+                </p>
+                <p className="text-sm text-foreground/70">{person.bio}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
