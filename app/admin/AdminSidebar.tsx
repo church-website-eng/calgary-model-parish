@@ -30,6 +30,7 @@ const contentLinks = [
   { href: "/admin/content/live", label: "Live Stream" },
   { href: "/admin/content/gallery", label: "Gallery" },
   { href: "/admin/content/give", label: "Give / Donate" },
+  { href: "/admin/content/careers", label: "Careers & Volunteering" },
   { href: "/admin/content/theme", label: "Theme & Appearance" },
 ];
 
