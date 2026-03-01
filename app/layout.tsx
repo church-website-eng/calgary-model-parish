@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description:
     "Welcome to Celestial Church of Christ, Calgary Model Parish. Diocese of Alberta. Join us for worship, prayer, and fellowship in Calgary.",
   metadataBase: new URL(
-    process.env.NEXTAUTH_URL || "https://ccccalgarymodel.ca",
+    process.env.NEXTAUTH_URL || "https://ccccalgarymodelparish.ca",
   ),
   openGraph: {
     title: "Celestial Church of Christ — Calgary Model Parish",

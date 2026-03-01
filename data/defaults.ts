@@ -7,7 +7,7 @@ export const defaultChurchInfo = {
   city: "Calgary",
   province: "AB",
   phone: "(587) 966-6261",
-  email: "info@ccccalgarymodel.ca",
+  email: "info@ccccalgarymodelparish.ca",
   facebookUrl: "https://www.facebook.com/profile.php?id=100081787865942",
   youtubeUrl: "https://www.youtube.com/@calgarymodelparish",
   instagramUrl: "https://www.instagram.com/calgarymodelparish",
@@ -117,14 +117,14 @@ export const defaultThemeSettings = {
 
 export const defaultGiveSettings = {
   funds: [
-    { name: "General Tithe", email: "tithe@ccccalgarymodel.ca" },
-    { name: "Building Fund", email: "building@ccccalgarymodel.ca" },
-    { name: "Missions & Evangelism", email: "missions@ccccalgarymodel.ca" },
-    { name: "Youth Ministry", email: "youth@ccccalgarymodel.ca" },
-    { name: "Welfare & Outreach", email: "welfare@ccccalgarymodel.ca" },
-    { name: "Thanksgiving Offering", email: "info@ccccalgarymodel.ca" },
-    { name: "Special Seed / Harvest", email: "info@ccccalgarymodel.ca" },
-    { name: "Other Donations", email: "info@ccccalgarymodel.ca" },
+    { name: "General Tithe", email: "tithe@ccccalgarymodelparish.ca" },
+    { name: "Building Fund", email: "building@ccccalgarymodelparish.ca" },
+    { name: "Missions & Evangelism", email: "missions@ccccalgarymodelparish.ca" },
+    { name: "Youth Ministry", email: "youth@ccccalgarymodelparish.ca" },
+    { name: "Welfare & Outreach", email: "welfare@ccccalgarymodelparish.ca" },
+    { name: "Thanksgiving Offering", email: "info@ccccalgarymodelparish.ca" },
+    { name: "Special Seed / Harvest", email: "info@ccccalgarymodelparish.ca" },
+    { name: "Other Donations", email: "info@ccccalgarymodelparish.ca" },
   ],
   presetAmounts: [25, 50, 100, 250],
   headerQuote:
@@ -136,9 +136,9 @@ export const defaultGiveSettings = {
 export const defaultCareers = {
   intro: "We believe every member has gifts to share. Whether you're looking to serve part-time, volunteer, or explore a career in ministry support, there are many ways to get involved at Calgary Model Parish.",
   careers: [
-    { id: "1", title: "Youth Program Coordinator", type: "volunteer", description: "Help organize and lead our youth ministry programs, events, and outreach activities.", requirements: "Experience working with youth, strong organizational skills", contact: "info@ccccalgarymodel.ca" },
-    { id: "2", title: "Media & Communications", type: "volunteer", description: "Assist with live streaming, social media, photography, and video production for church services and events.", requirements: "Familiarity with social media platforms, basic video/photo skills", contact: "info@ccccalgarymodel.ca" },
-    { id: "3", title: "Music Ministry Volunteer", type: "volunteer", description: "Join the choir or music team. Singers and instrumentalists of all levels are welcome.", requirements: "A heart for worship, willingness to attend rehearsals", contact: "info@ccccalgarymodel.ca" },
+    { id: "1", title: "Youth Program Coordinator", type: "volunteer", description: "Help organize and lead our youth ministry programs, events, and outreach activities.", requirements: "Experience working with youth, strong organizational skills", contact: "info@ccccalgarymodelparish.ca" },
+    { id: "2", title: "Media & Communications", type: "volunteer", description: "Assist with live streaming, social media, photography, and video production for church services and events.", requirements: "Familiarity with social media platforms, basic video/photo skills", contact: "info@ccccalgarymodelparish.ca" },
+    { id: "3", title: "Music Ministry Volunteer", type: "volunteer", description: "Join the choir or music team. Singers and instrumentalists of all levels are welcome.", requirements: "A heart for worship, willingness to attend rehearsals", contact: "info@ccccalgarymodelparish.ca" },
   ],
   volunteerAreas: [
     { id: "1", name: "Ushering & Hospitality", description: "Welcome visitors and members, assist during services, and ensure a warm church experience." },

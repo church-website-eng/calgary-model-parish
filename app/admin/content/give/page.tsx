@@ -20,11 +20,11 @@ interface GiveSettings {
 
 const defaultSettings: GiveSettings = {
   funds: [
-    { name: "General Tithe", email: "tithe@ccccalgarymodel.ca" },
-    { name: "Building Fund", email: "building@ccccalgarymodel.ca" },
-    { name: "Missions & Evangelism", email: "missions@ccccalgarymodel.ca" },
-    { name: "Youth Ministry", email: "youth@ccccalgarymodel.ca" },
-    { name: "Welfare & Outreach", email: "welfare@ccccalgarymodel.ca" },
+    { name: "General Tithe", email: "tithe@ccccalgarymodelparish.ca" },
+    { name: "Building Fund", email: "building@ccccalgarymodelparish.ca" },
+    { name: "Missions & Evangelism", email: "missions@ccccalgarymodelparish.ca" },
+    { name: "Youth Ministry", email: "youth@ccccalgarymodelparish.ca" },
+    { name: "Welfare & Outreach", email: "welfare@ccccalgarymodelparish.ca" },
   ],
   presetAmounts: [25, 50, 100, 250],
   headerQuote: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
@@ -114,7 +114,7 @@ export default function EditGive() {
                   type="email"
                   value={f.email}
                   onChange={(e) => updateFund(i, "email", e.target.value)}
-                  placeholder="e.g. tithe@ccccalgarymodel.ca"
+                  placeholder="e.g. tithe@ccccalgarymodelparish.ca"
                   className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 />
               </div>

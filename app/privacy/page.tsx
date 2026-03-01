@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
               &ldquo;us&rdquo;, or &ldquo;our&rdquo;) is committed to
               protecting your personal information and your right to privacy. This
               Privacy Policy explains how we collect, use, disclose, and safeguard
-              your information when you visit our website ccccalgarymodel.ca and
+              your information when you visit our website ccccalgarymodelparish.ca and
               use our services.
             </p>
           </div>
@@ -177,10 +177,10 @@ export default function PrivacyPolicyPage() {
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:info@ccccalgarymodel.ca"
+                  href="mailto:info@ccccalgarymodelparish.ca"
                   className="text-accent hover:underline"
                 >
-                  info@ccccalgarymodel.ca
+                  info@ccccalgarymodelparish.ca
                 </a>
               </p>
             </div>

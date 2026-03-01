@@ -19,14 +19,14 @@ interface GiveSettings {
 
 const defaultSettings: GiveSettings = {
   funds: [
-    { name: "General Tithe", email: "tithe@ccccalgarymodel.ca" },
-    { name: "Building Fund", email: "building@ccccalgarymodel.ca" },
-    { name: "Missions & Evangelism", email: "missions@ccccalgarymodel.ca" },
-    { name: "Youth Ministry", email: "youth@ccccalgarymodel.ca" },
-    { name: "Welfare & Outreach", email: "welfare@ccccalgarymodel.ca" },
-    { name: "Thanksgiving Offering", email: "info@ccccalgarymodel.ca" },
-    { name: "Special Seed / Harvest", email: "info@ccccalgarymodel.ca" },
-    { name: "Other Donations", email: "info@ccccalgarymodel.ca" },
+    { name: "General Tithe", email: "tithe@ccccalgarymodelparish.ca" },
+    { name: "Building Fund", email: "building@ccccalgarymodelparish.ca" },
+    { name: "Missions & Evangelism", email: "missions@ccccalgarymodelparish.ca" },
+    { name: "Youth Ministry", email: "youth@ccccalgarymodelparish.ca" },
+    { name: "Welfare & Outreach", email: "welfare@ccccalgarymodelparish.ca" },
+    { name: "Thanksgiving Offering", email: "info@ccccalgarymodelparish.ca" },
+    { name: "Special Seed / Harvest", email: "info@ccccalgarymodelparish.ca" },
+    { name: "Other Donations", email: "info@ccccalgarymodelparish.ca" },
   ],
   presetAmounts: [25, 50, 100, 250],
   headerQuote: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",

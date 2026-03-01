@@ -9,7 +9,7 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = "admin@ccccalgarymodel.ca";
+  const email = "admin@ccccalgarymodelparish.ca";
   const password = "CalgaryAdmin2026!";
 
   const hashed = await bcrypt.hash(password, 12);
