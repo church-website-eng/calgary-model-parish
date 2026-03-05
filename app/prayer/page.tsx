@@ -24,20 +24,22 @@ export default function PrayerRequestPage() {
     request: "",
     isPrivate: false,
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
     try {
-      await fetch("/api/prayer", {
+      const res = await fetch("/api/prayer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
     } catch {
-      // silently handle
+      setStatus("error");
     }
-    setSubmitted(true);
   };
 
   return (
@@ -54,7 +56,7 @@ export default function PrayerRequestPage() {
 
       <section className="py-16">
         <div className="mx-auto max-w-2xl px-4">
-          {submitted ? (
+          {status === "success" ? (
             <Card className="p-8 text-center">
               <div className="mb-4 text-4xl">&#128591;</div>
               <h2 className="mb-2 font-serif text-2xl font-bold text-primary">
@@ -66,7 +68,7 @@ export default function PrayerRequestPage() {
               </p>
               <Button
                 onClick={() => {
-                  setSubmitted(false);
+                  setStatus("idle");
                   setForm({ name: "", email: "", category: categories[0], request: "", isPrivate: false });
                 }}
                 variant="outline"
@@ -140,8 +142,13 @@ export default function PrayerRequestPage() {
                   />
                   Keep my request private (only the prayer team will see it)
                 </label>
-                <Button type="submit" variant="accent" size="lg" className="w-full">
-                  Submit Prayer Request
+                {status === "error" && (
+                  <p className="text-sm text-red-600">
+                    Something went wrong. Please try again.
+                  </p>
+                )}
+                <Button type="submit" variant="accent" size="lg" className="w-full" disabled={status === "sending"}>
+                  {status === "sending" ? "Submitting..." : "Submit Prayer Request"}
                 </Button>
               </form>
             </Card>

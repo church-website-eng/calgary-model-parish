@@ -15,20 +15,22 @@ const sacramentTypes = [
 export default function SacramentsPage() {
   const [selected, setSelected] = useState("");
   const [form, setForm] = useState({ name: "", email: "", phone: "", date: "", details: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
     try {
-      await fetch("/api/sacraments", {
+      const res = await fetch("/api/sacraments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, type: selected }),
       });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
     } catch {
-      // silently handle
+      setStatus("error");
     }
-    setSubmitted(true);
   };
 
   return (
@@ -60,7 +62,7 @@ export default function SacramentsPage() {
           </div>
 
           {/* Request form */}
-          {selected && !submitted && (
+          {selected && status !== "success" && (
             <Card className="mx-auto max-w-2xl p-8">
               <h2 className="mb-4 font-serif text-xl font-bold text-primary">
                 Request: {sacramentTypes.find((s) => s.value === selected)?.label}
@@ -88,12 +90,19 @@ export default function SacramentsPage() {
                   <label htmlFor="sdetails" className="mb-1 block text-sm font-medium">Additional Details</label>
                   <textarea id="sdetails" rows={4} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent" />
                 </div>
-                <Button type="submit" variant="accent" size="lg" className="w-full">Submit Request</Button>
+                {status === "error" && (
+                  <p className="text-sm text-red-600">
+                    Something went wrong. Please try again or contact us directly.
+                  </p>
+                )}
+                <Button type="submit" variant="accent" size="lg" className="w-full" disabled={status === "sending"}>
+                  {status === "sending" ? "Submitting..." : "Submit Request"}
+                </Button>
               </form>
             </Card>
           )}
 
-          {submitted && (
+          {status === "success" && (
             <Card className="mx-auto max-w-2xl p-8 text-center">
               <div className="mb-4 text-4xl">&#10003;</div>
               <h2 className="mb-2 font-serif text-xl font-bold text-primary">Request Submitted</h2>

@@ -131,11 +131,7 @@ export default async function LivePage() {
               <ul className="space-y-2 text-sm text-foreground/70">
                 <li className="flex justify-between">
                   <span>Sunday Main Service</span>
-                  <span className="font-medium text-primary">10:00 AM</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Wednesday Seeker Service</span>
-                  <span className="font-medium text-primary">9:00 AM</span>
+                  <span className="font-medium text-primary">10:00 AM – 1:00 PM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Wednesday Mercy Service</span>

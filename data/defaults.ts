@@ -150,6 +150,14 @@ export const defaultCareers = {
   ],
 };
 
+export const defaultDirectory = {
+  items: [
+    { id: "1", name: "Shepherd-in-Charge", title: "Shepherd-in-Charge", phone: "", email: "", ministry: "Parish Leadership", photoUrl: "" },
+    { id: "2", name: "Church Secretary", title: "Church Secretary", phone: "", email: "", ministry: "Administration", photoUrl: "" },
+    { id: "3", name: "Mother-in-Celestial", title: "Mother-in-Celestial", phone: "", email: "", ministry: "Women's Fellowship", photoUrl: "" },
+  ],
+};
+
 export const defaultMinistries = {
   items: [
     { name: "Men's Fellowship", description: "Brotherhood in Christ \u2014 men gathering for prayer, Bible study, and mutual support. Building godly men who lead their families and serve the church.", leader: "Men's Leader", icon: "shield" },

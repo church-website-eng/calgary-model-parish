@@ -85,28 +85,34 @@ export default async function AboutPage() {
             Our Leadership
           </h2>
           <div className="grid gap-8 md:grid-cols-3">
-            {clergy.map((person) => (
-              <Card key={person.id} className="text-center">
-                {person.photo ? (
-                  <img
-                    src={person.photo}
-                    alt={person.name}
-                    className="mx-auto mb-4 h-28 w-28 rounded-full object-cover object-top shadow-md"
-                  />
-                ) : (
-                  <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-primary/10 text-3xl text-primary">
-                    {person.name.charAt(0)}
-                  </div>
-                )}
-                <h3 className="font-serif text-lg font-bold text-primary">
-                  {person.name}
-                </h3>
-                <p className="mb-2 text-sm font-medium text-accent">
-                  {person.title}
-                </p>
-                <p className="text-sm text-foreground/70">{person.bio}</p>
-              </Card>
-            ))}
+            {clergy.map((person) => {
+              // When name equals a role title, show title as heading and skip duplicate subtitle
+              const nameIsRole = person.name === person.title || person.title.startsWith(person.name);
+              return (
+                <Card key={person.id} className="text-center">
+                  {person.photo ? (
+                    <img
+                      src={person.photo}
+                      alt={person.name}
+                      className="mx-auto mb-4 h-28 w-28 rounded-full object-cover object-top shadow-md"
+                    />
+                  ) : (
+                    <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-primary/10 text-3xl text-primary">
+                      {person.name.charAt(0)}
+                    </div>
+                  )}
+                  <h3 className="font-serif text-lg font-bold text-primary">
+                    {nameIsRole ? person.title : person.name}
+                  </h3>
+                  {!nameIsRole && (
+                    <p className="mb-2 text-sm font-medium text-accent">
+                      {person.title}
+                    </p>
+                  )}
+                  <p className="mt-2 text-sm text-foreground/70">{person.bio}</p>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

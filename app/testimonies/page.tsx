@@ -43,6 +43,7 @@ export default function TestimoniesPage() {
   const [form, setForm] = useState({ name: "", testimony: "" });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   useEffect(() => {
     fetch("/api/testimonies")
@@ -60,6 +61,7 @@ export default function TestimoniesPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setSubmitError(false);
 
     try {
       const res = await fetch("/api/testimonies", {
@@ -71,9 +73,11 @@ export default function TestimoniesPage() {
       if (res.ok) {
         setSubmitted(true);
         setForm({ name: "", testimony: "" });
+      } else {
+        setSubmitError(true);
       }
     } catch {
-      // silently fail
+      setSubmitError(true);
     } finally {
       setSubmitting(false);
     }
@@ -139,6 +143,11 @@ export default function TestimoniesPage() {
                       className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                     />
                   </div>
+                  {submitError && (
+                    <p className="text-sm text-red-600">
+                      Something went wrong. Please try again.
+                    </p>
+                  )}
                   <Button
                     type="submit"
                     variant="accent"

@@ -6,20 +6,22 @@ import Button from "@/components/ui/Button";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
     } catch {
-      // silently handle
+      setStatus("error");
     }
-    setSubmitted(true);
   };
 
   return (
@@ -28,7 +30,7 @@ export default function ContactForm() {
         Send us a Message
       </h2>
 
-      {submitted ? (
+      {status === "success" ? (
         <Card>
           <p className="text-center text-lg font-medium text-success">
             Thank you! We&apos;ll be in touch soon. God bless you.
@@ -69,8 +71,13 @@ export default function ContactForm() {
               className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
             />
           </div>
-          <Button type="submit" variant="accent" size="lg">
-            Send Message
+          {status === "error" && (
+            <p className="text-sm text-red-600">
+              Something went wrong. Please try again or email us directly.
+            </p>
+          )}
+          <Button type="submit" variant="accent" size="lg" disabled={status === "sending"}>
+            {status === "sending" ? "Sending..." : "Send Message"}
           </Button>
         </form>
       )}

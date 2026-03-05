@@ -13,20 +13,22 @@ export default function VisitForm() {
     guests: "1",
     questions: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
     try {
-      await fetch("/api/visit", {
+      const res = await fetch("/api/visit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
     } catch {
-      // silently handle
+      setStatus("error");
     }
-    setSubmitted(true);
   };
 
   return (
@@ -34,7 +36,7 @@ export default function VisitForm() {
       <h2 className="mb-4 font-serif text-2xl font-bold text-primary">
         Register Your Visit
       </h2>
-      {submitted ? (
+      {status === "success" ? (
         <Card className="p-8 text-center">
           <div className="mb-4 text-4xl">&#127881;</div>
           <h3 className="mb-2 font-serif text-xl font-bold text-primary">
@@ -75,8 +77,13 @@ export default function VisitForm() {
               <label htmlFor="vquestions" className="mb-1 block text-sm font-medium">Questions (optional)</label>
               <textarea id="vquestions" rows={3} value={form.questions} onChange={(e) => setForm({ ...form, questions: e.target.value })} className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent" />
             </div>
-            <Button type="submit" variant="accent" size="lg" className="w-full">
-              Register My Visit
+            {status === "error" && (
+              <p className="text-sm text-red-600">
+                Something went wrong. Please try again or call us directly.
+              </p>
+            )}
+            <Button type="submit" variant="accent" size="lg" className="w-full" disabled={status === "sending"}>
+              {status === "sending" ? "Registering..." : "Register My Visit"}
             </Button>
           </form>
         </Card>

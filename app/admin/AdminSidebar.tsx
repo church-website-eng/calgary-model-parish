@@ -22,6 +22,7 @@ const contentLinks = [
   { href: "/admin/content/announcements", label: "Announcements" },
   { href: "/admin/content/about", label: "About Page" },
   { href: "/admin/content/ministries", label: "Ministries" },
+  { href: "/admin/content/directory", label: "Member Directory" },
   { href: "/admin/content/sermons", label: "Sermons" },
   { href: "/admin/content/character", label: "Character of Week" },
   { href: "/admin/content/blog", label: "Blog Posts" },

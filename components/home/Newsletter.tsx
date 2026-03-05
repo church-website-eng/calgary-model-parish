@@ -5,20 +5,22 @@ import Button from "@/components/ui/Button";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
     try {
-      await fetch("/api/newsletter", {
+      const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
     } catch {
-      // silently handle
+      setStatus("error");
     }
-    setSubscribed(true);
   };
 
   return (
@@ -32,24 +34,31 @@ export default function Newsletter() {
           highlights, and upcoming events.
         </p>
 
-        {subscribed ? (
+        {status === "success" ? (
           <p className="rounded-full bg-white/10 px-6 py-3 text-sm font-medium text-gold">
             Thank you! You&apos;re now subscribed. God bless!
           </p>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <input
-              type="email"
-              required
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm text-white placeholder-white/50 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold sm:w-80"
-            />
-            <Button type="submit" variant="accent" size="md">
-              Subscribe
-            </Button>
-          </form>
+          <>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm text-white placeholder-white/50 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold sm:w-80"
+              />
+              <Button type="submit" variant="accent" size="md" disabled={status === "sending"}>
+                {status === "sending" ? "Subscribing..." : "Subscribe"}
+              </Button>
+            </form>
+            {status === "error" && (
+              <p className="mt-3 text-sm text-red-300">
+                Something went wrong. Please try again.
+              </p>
+            )}
+          </>
         )}
       </div>
     </section>
