@@ -4,7 +4,15 @@ import { useState } from "react";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  formHeading?: string;
+  successMessage?: string;
+}
+
+export default function ContactForm({
+  formHeading = "Send us a Message",
+  successMessage = "Thank you! We\u2019ll be in touch soon. God bless you.",
+}: ContactFormProps) {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
@@ -27,13 +35,13 @@ export default function ContactForm() {
   return (
     <div>
       <h2 className="mb-6 font-serif text-2xl font-bold text-primary">
-        Send us a Message
+        {formHeading}
       </h2>
 
       {status === "success" ? (
         <Card>
           <p className="text-center text-lg font-medium text-success">
-            Thank you! We&apos;ll be in touch soon. God bless you.
+            {successMessage}
           </p>
         </Card>
       ) : (

@@ -1,8 +1,8 @@
 import Card from "@/components/ui/Card";
-import { FiMapPin, FiPhone, FiMail, FiClock } from "react-icons/fi";
+import { FiMapPin, FiPhone, FiMail, FiClock, FiInfo } from "react-icons/fi";
 import type { Metadata } from "next";
 import { getContent } from "@/lib/content";
-import { defaultChurchInfo, defaultServiceTimes } from "@/data/defaults";
+import { defaultChurchInfo, defaultServiceTimes, defaultContactPage } from "@/data/defaults";
 import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
@@ -10,9 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  const [info, services] = await Promise.all([
+  const [info, services, contactContent] = await Promise.all([
     getContent("church_info", defaultChurchInfo),
     getContent("service_times", defaultServiceTimes),
+    getContent("contact_page", defaultContactPage),
   ]);
 
   return (
@@ -22,14 +23,17 @@ export default async function ContactPage() {
           Contact Us
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-white/70">
-          We&apos;d love to hear from you
+          {contactContent.subtitle || defaultContactPage.subtitle}
         </p>
       </section>
 
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
-            <ContactForm />
+            <ContactForm
+              formHeading={contactContent.formHeading}
+              successMessage={contactContent.successMessage}
+            />
 
             {/* Info cards */}
             <div className="space-y-6">
@@ -82,6 +86,18 @@ export default async function ContactPage() {
                 </div>
               </Card>
 
+              {contactContent.officeHours && (
+                <Card>
+                  <div className="flex items-start gap-4">
+                    <FiClock className="mt-1 text-accent" size={20} />
+                    <div>
+                      <h3 className="font-semibold text-primary">Office Hours</h3>
+                      <p className="text-sm text-muted">{contactContent.officeHours}</p>
+                    </div>
+                  </div>
+                </Card>
+              )}
+
               {/* Map */}
               <div className="h-64 overflow-hidden rounded-xl">
                 <iframe
@@ -93,6 +109,15 @@ export default async function ContactPage() {
                   title={`${info.cathedralName} Location`}
                 />
               </div>
+
+              {contactContent.additionalInfo && (
+                <div className="flex items-start gap-3 rounded-lg bg-muted-light p-4">
+                  <FiInfo className="mt-0.5 flex-shrink-0 text-accent" size={16} />
+                  <p className="text-sm text-foreground/70">
+                    {contactContent.additionalInfo}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

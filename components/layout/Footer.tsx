@@ -1,14 +1,18 @@
 import Link from "next/link";
-import Image from "next/image";
 import { FiFacebook, FiYoutube, FiInstagram, FiMail, FiMusic } from "react-icons/fi";
 import { getContent } from "@/lib/content";
-import { defaultChurchInfo, defaultServiceTimes } from "@/data/defaults";
+import { defaultChurchInfo, defaultServiceTimes, defaultFooter } from "@/data/defaults";
 
 export default async function Footer() {
-  const [churchInfo, serviceTimes] = await Promise.all([
+  const [churchInfo, serviceTimes, footerContent] = await Promise.all([
     getContent("church_info", defaultChurchInfo),
     getContent("service_times", defaultServiceTimes),
+    getContent("footer", defaultFooter),
   ]);
+
+  const quickLinks = footerContent.quickLinks && footerContent.quickLinks.length > 0
+    ? footerContent.quickLinks
+    : defaultFooter.quickLinks;
 
   const socialLinks = [
     { href: churchInfo.facebookUrl, icon: <FiFacebook size={20} />, label: "Facebook" },
@@ -40,6 +44,11 @@ export default async function Footer() {
             {churchInfo.street}<br />
             {churchInfo.city}, {churchInfo.province}
           </p>
+          {footerContent.tagline && (
+            <p className="mt-2 text-xs text-white/50 italic">
+              {footerContent.tagline}
+            </p>
+          )}
         </div>
 
         {/* Service times */}
@@ -60,13 +69,7 @@ export default async function Footer() {
             Quick Links
           </h4>
           <ul className="space-y-1 text-sm">
-            {[
-              { label: "About Us", href: "/about" },
-              { label: "Sermons", href: "/sermons" },
-              { label: "Events", href: "/events" },
-              { label: "Give Online", href: "/give" },
-              { label: "Contact", href: "/contact" },
-            ].map((link) => (
+            {quickLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -104,7 +107,10 @@ export default async function Footer() {
       </div>
 
       <div className="border-t border-white/10 px-4 py-4 text-center text-xs text-white/50">
-        <p>&copy; {new Date().getFullYear()} {churchInfo.churchName} — {churchInfo.cathedralName}. All rights reserved.</p>
+        <p>
+          &copy; {new Date().getFullYear()} {churchInfo.churchName} — {churchInfo.cathedralName}.
+          {footerContent.copyrightExtra ? ` ${footerContent.copyrightExtra}.` : ""} All rights reserved.
+        </p>
         <Link href="/privacy" className="mt-1 inline-block text-white/40 transition hover:text-gold">
           Privacy Policy
         </Link>

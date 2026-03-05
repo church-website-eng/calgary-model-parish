@@ -158,6 +158,26 @@ export const defaultDirectory = {
   ],
 };
 
+export const defaultContactPage = {
+  subtitle: "We\u2019d love to hear from you",
+  formHeading: "Send us a Message",
+  successMessage: "Thank you! We\u2019ll be in touch soon. God bless you.",
+  officeHours: "Sunday 10:00 AM \u2013 1:00 PM | Wednesday 6:00 PM | Friday 8:00 PM",
+  additionalInfo: "For urgent matters, please call the church phone number directly.",
+};
+
+export const defaultFooter = {
+  quickLinks: [
+    { label: "About Us", href: "/about" },
+    { label: "Sermons", href: "/sermons" },
+    { label: "Events", href: "/events" },
+    { label: "Give Online", href: "/give" },
+    { label: "Contact", href: "/contact" },
+  ],
+  tagline: "",
+  copyrightExtra: "",
+};
+
 export const defaultMinistries = {
   items: [
     { name: "Men's Fellowship", description: "Brotherhood in Christ \u2014 men gathering for prayer, Bible study, and mutual support. Building godly men who lead their families and serve the church.", leader: "Men's Leader", icon: "shield" },
